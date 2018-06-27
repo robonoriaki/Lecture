@@ -1,0 +1,144 @@
+\documentclass[11pt,a4j]{jarticle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+
+\def\@thesis{アドバンスドコントロール}
+ \def\id#1{\def\@id{#1}}%
+ \def\college#1{\def\@college{#1}}
+ \def\department#1{\def\@department{#1}}
+
+\def\@maketitle{%titleの定義
+ \begin{center}
+ {\LARGE \@thesis \par} %修士論文と記載される部分
+%\vspace{10mm}
+ {\Huge \@title \par}% 論文のタイトル部分
+\vspace{5mm}
+\end{center}
+\begin{flushleft}
+%\vspace{20mm}
+{\Large 大学：\@college \par}
+ {\Large 学部学科：\@department \par} % 所属部分
+{\Large 学籍番号：\@id \par} % 学籍番号部分
+ {\Large 氏名：\@author　\par}% 氏名
+ {\Large 提出日：\@date} % 提出年月日部分
+\end{flushleft} 
+ \par\vskip 1.5em
+ }
+
+\makeatother
+
+ \title{Octaveによるオブザーバの実習　問題2}
+ %\date{\today}
+\date{2018年6月27日}
+ \college{千葉工業大学}
+ \department{工学部未来ロボティクス学科}
+ \id{1526038}
+ \author{金井徳亮}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% facyhdrパッケージを読み込む
+\usepackage{fancyhdr}
+ % fancyhdrパッケージを使うスタイルにする
+\pagestyle{fancy}
+
+ \lhead{} % 左ヘッダに出力する内容。空白でも可。
+\chead{} % 中央ヘッダに出力する内容。空白でも可。
+\rhead{} % 右ヘッダに出力する内容。空白でも可。
+
+\def\headrulewidth{0pt} % ヘッダと本文領域の区切り線の幅。いらないなら0pt
+
+ \lfoot{} % 左フッタに出力する内容。空白でも可。
+\cfoot{} % 中央フッタに出力する内容。空白でも可。
+\rfoot{\thepage/2} % 右フッタに出力する内容。空白でも可。\thepageはページ番号を出力するコマンド
+
+\def\footrulewidth{0pt} % フッタと本文領域の区切り線の幅。いらないなら0pt
+
+\setcounter{page}{1}%ページ番号の開始番号を設定
+
+\usepackage[dvipdfmx]{graphicx}%図の挿入のためのパッケージ
+%\usepackage[subrefformat=parens]{subcaption}
+%\captionsetup{compatibility=false}
+\usepackage{here}%Hを使うのに必要
+
+\usepackage{ascmac}%枠を使用するためのパッケージ
+
+\usepackage{amsmath}%分数用
+
+%式番号に節番号を追加
+\makeatletter
+    \renewcommand{\theequation}{%
+    \thesection.\arabic{equation}}
+    \@addtoreset{equation}{section}
+  \makeatother
+%図に節番号を追加
+%\makeatletter
+   % \renewcommand{\thefigure}{%
+    %\thesection.\arabic{figure}}
+    %\@addtoreset{figure}{section}
+  %\makeatother
+%表に節番号を追加
+\makeatletter
+ \renewcommand{\thetable}{%
+   \thesection.\arabic{table}}
+  \@addtoreset{table}{section}
+\makeatother
+
+\usepackage{listings}%プログラムを貼り付ける
+
+\lstset{%プログラムを載せる際の設定
+  language={C},
+  basicstyle={\small},%
+  identifierstyle={\small},%
+  %commentstyle={\small\itshape},%
+  commentstyle={\small},%
+  keywordstyle={\small\bfseries},%
+  ndkeywordstyle={\small},%
+  stringstyle={\small\ttfamily},
+  frame={tb},
+  breaklines=true,
+  columns=[l]{fullflexible},%
+  numbers=left,%
+  xrightmargin=0zw,%
+  xleftmargin=3zw,%
+  numberstyle={\scriptsize},%
+  stepnumber=1,
+  numbersep=1zw,%
+  lineskip=-0.5ex%
+}
+
+\begin{document}
+\maketitle%表紙の作成
+%\thispagestyle{empty}%ページ番号を消去
+
+%\newpage
+%\parindent 0pt%インデントしない、このドキュメント全体で
+
+Octaveによるオブザーバの実習の問題2についての解答を以下に示す. 図1, 図2はOctaveで実行したmファイルである. 図3はその結果を図示したものである. 制御に用いたパラメータは適当に設定した.
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[keepaspectratio,width=100mm]{proc5-1.png}
+		\caption{mファイル-1}
+		\label{fig:f-1}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[keepaspectratio,width=100mm]{proc5-2.png}
+		\caption{mファイル-2}
+		\label{fig:f-2}
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[keepaspectratio,width=120mm]{proc5-3.png}
+		\caption{最適制御の結果}
+		\label{fig:f-3}
+	\end{center}
+\end{figure}
+
+\end{document}
